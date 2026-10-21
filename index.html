@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f2e9" />
+  <meta name="description" content="景中局 SceneQuest：和伙伴一起走进故事，在真实场景中协作解谜。" />
+  <title>景中局 · AI 景区实地探索</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="景中局首页" data-action="home"><span class="brand-mark">景</span><span>景中局 <small>SCENEQUEST</small></span></a>
+      <div class="topbar-right"><span class="connection"><i></i> 服务连接中</span><button class="icon-button" data-action="admin" aria-label="打开管理员后台" title="管理员后台">⌘</button></div>
+    </header>
+    <main id="app" aria-live="polite"></main>
+    <footer class="footer">原创虚构剧情 · 请在开放、安全的体验区域内行动</footer>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
