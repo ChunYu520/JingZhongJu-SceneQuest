@@ -1,0 +1,429 @@
+{
+  "storyId": "song-market",
+  "version": "1.0.0",
+  "title": "汴京失信案",
+  "genre": "原创宋代市井悬疑（虚构剧情，不代表真实历史事件）",
+  "minPlayers": 3,
+  "maxPlayers": 5,
+  "estimatedMinutes": 18,
+  "safetyRules": [
+    "所有任务仅在开放的体验区域内完成",
+    "不得要求玩家奔跑、攀爬、进入封闭空间或接触危险设施",
+    "任何真实历史事实必须来自 sources；虚构剧情要明确标注"
+  ],
+  "fixedFacts": [
+    {
+      "id": "fact_1",
+      "text": "一份商约封签在交付前未出现在约定的柜台上。",
+      "type": "fictional_fact"
+    },
+    {
+      "id": "fact_2",
+      "text": "当夜下过雨，账房一处窗边出现漏水。",
+      "type": "fictional_fact"
+    },
+    {
+      "id": "fact_3",
+      "text": "封签被暂时移到干燥的档案柜，目的是保护纸张，并非销毁。",
+      "type": "fictional_truth",
+      "revealCondition": [
+        "clue_archive_note",
+        "clue_witness_memory"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "roleId": "merchant",
+      "name": "绸缎商",
+      "publicBio": "你负责交付商约中的一批绸缎。",
+      "privateGoal": "确认商约没有被擅自修改，并找到封签去向。",
+      "initialClues": [
+        "clue_order_copy"
+      ],
+      "allowedActions": [
+        "share_clue",
+        "submit_answer",
+        "vote"
+      ]
+    },
+    {
+      "roleId": "constable",
+      "name": "巡街捕快",
+      "publicBio": "你负责协助街市厘清纠纷。",
+      "privateGoal": "核对各方说法，避免在证据不足时指责任何人。",
+      "initialClues": [
+        "clue_scene_record"
+      ],
+      "allowedActions": [
+        "share_clue",
+        "submit_answer",
+        "vote"
+      ]
+    },
+    {
+      "roleId": "courier",
+      "name": "送信人",
+      "publicBio": "你负责在街市不同地点传递消息。",
+      "privateGoal": "还原封签从柜台离开的时间线。",
+      "initialClues": [
+        "clue_delivery_note"
+      ],
+      "allowedActions": [
+        "share_clue",
+        "submit_answer",
+        "vote"
+      ]
+    },
+    {
+      "roleId": "witness",
+      "name": "茶摊见证人",
+      "publicBio": "你常在街市活动，留意到了当晚的一些情况。",
+      "privateGoal": "把你看到的情况与其他证据核对后再作判断。",
+      "initialClues": [
+        "clue_witness_memory"
+      ],
+      "allowedActions": [
+        "share_clue",
+        "submit_answer",
+        "vote"
+      ]
+    },
+    {
+      "roleId": "clerk",
+      "name": "账房学徒",
+      "publicBio": "你熟悉档案柜和账房的日常记录。",
+      "privateGoal": "找到档案柜的交接记录。",
+      "initialClues": [
+        "clue_clerk_receipt"
+      ],
+      "allowedActions": [
+        "share_clue",
+        "submit_answer",
+        "vote"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "sceneId": "market_gate",
+      "name": "街市入口",
+      "allowedStages": [
+        "intro"
+      ],
+      "publicDescription": "街市开始营业，几位当事人正等待商约核对。"
+    },
+    {
+      "sceneId": "silk_shop",
+      "name": "绸缎铺",
+      "allowedStages": [
+        "investigation"
+      ],
+      "publicDescription": "柜台上留有交易登记的副本。"
+    },
+    {
+      "sceneId": "tea_stall",
+      "name": "茶摊",
+      "allowedStages": [
+        "investigation"
+      ],
+      "publicDescription": "茶摊附近有人记得当晚的情形。"
+    },
+    {
+      "sceneId": "archive_room",
+      "name": "档案柜外间",
+      "allowedStages": [
+        "verification"
+      ],
+      "publicDescription": "公开体验区域内设置了档案线索展示牌。",
+      "grantsClues": [
+        "clue_archive_note"
+      ]
+    },
+    {
+      "sceneId": "town_square",
+      "name": "街市议事处",
+      "allowedStages": [
+        "decision"
+      ],
+      "publicDescription": "队伍需要依据已确认的证据作出最终判断。"
+    }
+  ],
+  "clues": [
+    {
+      "clueId": "clue_order_copy",
+      "title": "商约副本",
+      "body": "商约封签应当在交付确认后归入档案柜，记录没有说明封签遗失。",
+      "visibility": "private",
+      "truthTag": "fictional_evidence"
+    },
+    {
+      "clueId": "clue_scene_record",
+      "title": "柜台记录",
+      "body": "柜台记录显示封签在闭店前已离开柜台，但没有记录为被盗。",
+      "visibility": "private",
+      "truthTag": "fictional_evidence"
+    },
+    {
+      "clueId": "clue_delivery_note",
+      "title": "递送便笺",
+      "body": "递送人记得当晚临时调整过纸本文书的存放位置。",
+      "visibility": "private",
+      "truthTag": "fictional_evidence"
+    },
+    {
+      "clueId": "clue_witness_memory",
+      "title": "目击记忆",
+      "body": "你看到有人在雨后把一个封存纸袋带向档案柜方向，但看不清袋内物品。",
+      "visibility": "private",
+      "truthTag": "partial_evidence"
+    },
+    {
+      "clueId": "clue_archive_note",
+      "title": "档案交接条",
+      "body": "记录表明当晚有一份纸本文书因窗边漏水被暂时移入干燥档案柜。",
+      "visibility": "private",
+      "truthTag": "fictional_evidence"
+    },
+    {
+      "clueId": "clue_clerk_receipt",
+      "title": "账房交接副条",
+      "body": "账房学徒记得当晚有临时存放记录，但需要与档案交接条核对后才能确定具体去向。",
+      "visibility": "private",
+      "truthTag": "partial_evidence"
+    }
+  ],
+  "events": [
+    {
+      "eventId": "event_start_investigation",
+      "stage": "intro",
+      "trigger": {
+        "type": "SCENE_ACTIVATED",
+        "sceneId": "market_gate"
+      },
+      "preconditions": [],
+      "targets": "ALL",
+      "publicNarrative": "一份商约封签暂时找不到了。各位先交换手中的线索，不要急着认定是谁的过失。",
+      "grantClues": [],
+      "activateTasks": [
+        "task_share_first_clues"
+      ],
+      "nextStage": "investigation"
+    },
+    {
+      "eventId": "event_compare_records",
+      "stage": "investigation",
+      "trigger": {
+        "type": "CLUE_COUNT",
+        "minimumPublicOrShared": 2
+      },
+      "preconditions": [
+        "task_share_first_clues"
+      ],
+      "targets": "ALL",
+      "publicNarrative": "不同记录之间出现了可以核对的时间线。请找到能解释纸本文书去向的证据。",
+      "grantClues": [],
+      "activateTasks": [
+        "task_visit_archive"
+      ],
+      "nextStage": "verification"
+    },
+    {
+      "eventId": "event_archive_explanation",
+      "stage": "verification",
+      "trigger": {
+        "type": "CLUES_CONFIRMED",
+        "clueIds": [
+          "clue_archive_note",
+          "clue_witness_memory"
+        ]
+      },
+      "preconditions": [
+        "task_visit_archive"
+      ],
+      "targets": "ALL",
+      "publicNarrative": "目击线索与档案记录可以相互印证。队伍现在可以讨论封签为何改变存放位置。",
+      "grantClues": [],
+      "activateTasks": [
+        "task_team_decision"
+      ],
+      "nextStage": "decision"
+    },
+    {
+      "eventId": "event_offer_hint",
+      "stage": "investigation",
+      "trigger": {
+        "type": "PLAYER_STALLED",
+        "idleSeconds": 90
+      },
+      "preconditions": [],
+      "targets": "ALL",
+      "publicNarrative": "目前的线索还没有拼成完整的时间线。试着交换各自掌握的信息，再决定下一步。",
+      "grantClues": [],
+      "activateTasks": [],
+      "nextStage": "investigation"
+    },
+    {
+      "eventId": "event_ending",
+      "stage": "decision",
+      "trigger": {
+        "type": "TASK_COMPLETED",
+        "taskId": "task_team_decision"
+      },
+      "preconditions": [
+        "task_team_decision"
+      ],
+      "targets": "ALL",
+      "publicNarrative": "各位已经作出团队判断。让我们根据已确认的证据，看看这次调查最终得出了什么结论。",
+      "grantClues": [],
+      "activateTasks": [],
+      "nextStage": "ending"
+    }
+  ],
+  "tasks": [
+    {
+      "taskId": "task_share_first_clues",
+      "title": "交换线索",
+      "type": "COLLABORATION",
+      "stage": "investigation",
+      "description": "至少两位玩家将各自拥有的一条线索分享给另一名队员。",
+      "preconditions": [],
+      "validation": {
+        "type": "MIN_CLUE_SHARES",
+        "count": 2
+      },
+      "onCompleteEvent": "event_compare_records"
+    },
+    {
+      "taskId": "task_visit_archive",
+      "title": "核验档案记录",
+      "type": "SCENE_AND_CLUE",
+      "stage": "verification",
+      "description": "到达档案柜外间，根据景区环境提示核对档案记录，并与队友分享的目击线索相互印证。",
+      "preconditions": [
+        "task_share_first_clues"
+      ],
+      "validation": {
+        "type": "REQUIRED_CLUES_CONFIRMED",
+        "clueIds": [
+          "clue_archive_note",
+          "clue_witness_memory"
+        ]
+      },
+      "onCompleteEvent": "event_archive_explanation"
+    },
+    {
+      "taskId": "task_team_decision",
+      "title": "作出团队判断",
+      "type": "TEAM_CHOICE",
+      "stage": "decision",
+      "description": "根据已确认的线索，选择最有证据支持的解释。",
+      "preconditions": [
+        "task_visit_archive"
+      ],
+      "validation": {
+        "type": "TEAM_VOTE",
+        "choices": [
+          "SEARCH_ARCHIVE",
+          "ACCUSE_SOMEONE",
+          "REQUEST_MORE_EVIDENCE"
+        ],
+        "requiredVotes": "MAJORITY"
+      },
+      "onCompleteEvent": "event_ending"
+    }
+  ],
+  "allowedEvents": [
+    {
+      "eventId": "event_offer_hint",
+      "reasonCode": "PLAYER_STALLED",
+      "preconditions": [],
+      "isFallback": true
+    },
+    {
+      "eventId": "event_compare_records",
+      "reasonCode": "CLUES_READY",
+      "preconditions": [
+        "task_share_first_clues"
+      ],
+      "isFallback": false
+    },
+    {
+      "eventId": "event_archive_explanation",
+      "reasonCode": "ARCHIVE_EVIDENCE_READY",
+      "preconditions": [
+        "task_visit_archive"
+      ],
+      "isFallback": false
+    },
+    {
+      "eventId": "event_ending",
+      "reasonCode": "TEAM_DECISION_COMPLETE",
+      "preconditions": [
+        "task_team_decision"
+      ],
+      "isFallback": false
+    }
+  ],
+  "endings": [
+    {
+      "endingId": "ending_reconcile",
+      "title": "查明缘由",
+      "trigger": {
+        "type": "CHOICE_AND_EVIDENCE",
+        "choice": "SEARCH_ARCHIVE",
+        "requiredClues": [
+          "clue_archive_note",
+          "clue_witness_memory"
+        ]
+      },
+      "narrativeTemplate": "队伍用两条线索还原了封签暂存的经过，并建议当事人补全交接记录。"
+    },
+    {
+      "endingId": "ending_unresolved",
+      "title": "仍待核实",
+      "trigger": {
+        "type": "CHOICE",
+        "choice": "REQUEST_MORE_EVIDENCE"
+      },
+      "narrativeTemplate": "队伍选择不在证据不足时下结论，并要求补充确认记录。"
+    },
+    {
+      "endingId": "ending_rushed",
+      "title": "仓促判断",
+      "trigger": {
+        "type": "CHOICE",
+        "choice": "ACCUSE_SOMEONE"
+      },
+      "narrativeTemplate": "队伍作出了指认，但现有线索不足以支持该结论。故事以保留争议的方式结束。"
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "source_story_notice",
+      "title": "原创虚构剧情说明",
+      "url": null,
+      "type": "fiction_notice"
+    }
+  ],
+  "roleAssignment": {
+    "3": [
+      "merchant",
+      "constable",
+      "witness"
+    ],
+    "4": [
+      "merchant",
+      "constable",
+      "courier",
+      "witness"
+    ],
+    "5": [
+      "merchant",
+      "constable",
+      "courier",
+      "witness",
+      "clerk"
+    ]
+  }
+}
