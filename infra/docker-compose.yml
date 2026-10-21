@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: scenequest-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: scenequest
+      POSTGRES_USER: scenequest
+      POSTGRES_PASSWORD: scenequest_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - scenequest_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scenequest -d scenequest"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  scenequest_pgdata:
