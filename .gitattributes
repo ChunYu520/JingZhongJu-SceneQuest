@@ -1,0 +1,20 @@
+# 统一换行符，避免不同平台检出后文件全量变更
+* text=auto eol=lf
+
+# Windows 脚本保持 CRLF，便于 PowerShell / cmd 直接执行
+*.ps1  text eol=crlf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# 二进制文件不做换行转换与文本差异
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.pdf   binary
+*.zip   binary
+*.docx  binary
+*.pptx  binary
+*.xlsx  binary
+*.woff  binary
+*.woff2 binary
