@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS game_sessions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   invite_code VARCHAR(12) NOT NULL UNIQUE,
   story_id VARCHAR(100) NOT NULL,
-  story_version VARCHAR(40) NOT NULL DEFAULT '1.0.0',
+  story_version VARCHAR(40) NOT NULL DEFAULT '2.1.0',
   status session_status NOT NULL DEFAULT 'LOBBY',
   host_player_id UUID,
   current_stage VARCHAR(100) NOT NULL DEFAULT 'lobby',
